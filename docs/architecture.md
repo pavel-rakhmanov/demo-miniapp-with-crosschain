@@ -55,6 +55,8 @@ Relevant files:
 
 ## Authorization Flow
 
+This example requests `tonProof` during the TonConnect connection flow:
+
 1. The user starts wallet connection from the app.
 2. The app requests a Dynamic nonce.
 3. The nonce is passed to TonConnect as `tonProof`.
@@ -64,6 +66,13 @@ Relevant files:
 7. The app state becomes authorized with both TON and EVM addresses.
 
 The user-facing identity remains the TON wallet. The EVM wallet is associated with the Dynamic user and accessed by the application through Dynamic WaaS.
+
+Some TON wallets may not support sending `tonProof` during the initial connection. In that case, the integration should use a split authorization flow:
+
+1. Connect the TON wallet.
+2. Request and submit `tonProof` for the connected wallet.
+3. Verify the TON wallet account through Dynamic.
+4. Create or restore the user's EVM WaaS wallet.
 
 ## Cross-chain Flow
 

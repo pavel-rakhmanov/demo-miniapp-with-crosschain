@@ -80,6 +80,8 @@ If the variable is not provided, the repository serves a default manifest from:
 
 When hosting this example, make sure the manifest URL, application URL, and icon URL are valid public URLs.
 
+This example requests `tonProof` during wallet connection. If a target TON wallet does not support that flow, adapt the authorization sequence to connect the wallet first and request `tonProof` after the wallet is connected.
+
 ## Configure Omniston
 
 The app uses Omniston for quotes, transaction construction, order registration, and settlement tracking.
