@@ -28,7 +28,7 @@
     "@tanstack/react-router": "1.170.16",
     "@tanstack/react-start": "1.168.26",
     "@tma.js/sdk-react": "3.0.22",
-    "@tonconnect/ui-react": "2.4.0",
+    "@tonconnect/ui-react": "2.4.4",
     "buffer": "6.0.3",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",

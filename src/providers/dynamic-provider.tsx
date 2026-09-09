@@ -17,7 +17,7 @@ export function DynamicSdkProvider({ children }: { children: React.ReactNode }) 
       },
     });
 
-    addTonConnectExtension({ tonConnectUI }, client);
+    addTonConnectExtension({ tonConnectUI: tonConnectUI as any }, client);
     addWaasEvmExtension(client);
 
     void initializeClient(client);
