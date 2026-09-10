@@ -70,7 +70,7 @@ The user-facing identity remains the TON wallet. The EVM wallet is associated wi
 Some TON wallets may not support sending `tonProof` during the initial connection. In that case, the integration should use a split authorization flow:
 
 1. Connect the TON wallet.
-2. Request and submit `tonProof` for the connected wallet.
+2. Request and sign `tonProof` for the connected wallet.
 3. Verify the TON wallet account through Dynamic.
 4. Create or restore the user's EVM WaaS wallet.
 
@@ -82,6 +82,8 @@ The current demo uses:
 - Arbitrum USD₮0 ERC-20 as the EVM asset.
 
 The asset configuration is defined in `src/constants.ts`.
+
+The example also includes optional Omniston integrator fee configuration. When `VITE_OMNISTON_INTEGRATOR_ADDRESS_ON_TON` or `VITE_OMNISTON_INTEGRATOR_ADDRESS_ON_EVM` is set, quote requests include the configured integrator address and fee parameters for the corresponding destination chain.
 
 ### TON to EVM
 
@@ -108,12 +110,4 @@ For EVM-to-TON movement, the app:
 
 ## Application Boundary
 
-This repository stops at the transfer layer. It shows where EVM logic can be attached after funds are available in the Dynamic EVM WaaS wallet.
-
-Examples include protocol deposits, swaps, mints, payments, or other contract interactions. Those interactions should use the Dynamic EVM wallet account and an EVM client such as `viem`.
-
-## Scope
-
-This is an integration example, not a production application.
-
-It should be used to understand the integration pattern, not as a ready application template.
+This repository stops at the transfer layer. It does not implement a protocol-specific EVM action after funding.

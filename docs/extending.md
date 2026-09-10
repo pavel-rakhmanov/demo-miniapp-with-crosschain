@@ -78,7 +78,9 @@ If the variable is not provided, the repository serves a default manifest from:
 /tonconnect-manifest.json
 ```
 
-When hosting this example, make sure the manifest URL, application URL, and icon URL are valid public URLs.
+The manifest must be hosted correctly for TonConnect wallet authorization to work. See the [TonConnect manifest requirements](https://docs.ton.org/applications/ton-connect/get-started#prepare-the-manifest).
+
+Local development may require an additional public HTTPS URL for the app and manifest.
 
 This example requests `tonProof` during wallet connection. If a target TON wallet does not support that flow, adapt the authorization sequence to connect the wallet first and request `tonProof` after the wallet is connected.
 
@@ -86,11 +88,7 @@ This example requests `tonProof` during wallet connection. If a target TON walle
 
 The app uses Omniston for quotes, transaction construction, order registration, and settlement tracking.
 
-The default WebSocket endpoint is:
-
-```txt
-wss://omni-ws.ston.fi
-```
+For a broader Omniston reference implementation, see the [Omniston demo app](https://omniston.ston.fi/) and its [source code](https://github.com/ston-fi/omniston-sdk/tree/main/examples/react-app). It covers more Omniston UI and signing scenarios.
 
 Integrator addresses can be configured with:
 
