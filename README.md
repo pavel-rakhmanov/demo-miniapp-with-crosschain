@@ -7,7 +7,7 @@ The code is provided as an integration example. It is not a production-ready app
 The example combines:
 
 - TON wallet connection through TonConnect.
-- EVM wallet instantiation via Dynamic WaaS (wallet as a service).
+- EVM wallet creation with Dynamic WaaS (Wallet-as-a-Service).
 - Cross-chain liquidity movement between TON and EVM through Omniston.
 
 Omniston is the cross-chain layer used under the hood for quotes, order construction, and settlement tracking.
@@ -21,7 +21,7 @@ TON wallet
   -> TonConnect initialization
   -> Dynamic initialization
   -> TON wallet connect with Dynamic nonce
-  -> EVM WaaS wallet provisioning
+  -> EVM wallet creation with Dynamic WaaS
   -> Omniston TON <-> EVM transfers
   -> optional EVM application logic
 ```
