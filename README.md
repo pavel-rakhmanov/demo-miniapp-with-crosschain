@@ -12,7 +12,7 @@ The example combines:
 
 Omniston is the cross-chain layer used under the hood for quotes, order construction, and settlement tracking.
 
-The user-facing wallet is a TON wallet. The EVM wallet is created through Dynamic WaaS and can be accessed by the application for EVM operations.
+The user-facing wallet is a TON wallet. The EVM wallet is created and accessed through Dynamic WaaS for EVM operations.
 
 ## Flow
 

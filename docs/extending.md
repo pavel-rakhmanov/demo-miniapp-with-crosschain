@@ -2,7 +2,7 @@
 
 This repository can be used as a reference for TON-controlled EVM application flows.
 
-The default implementation demonstrates wallet authorization, EVM WaaS provisioning, and TON <-> EVM asset movement. It is not a production-ready application.
+The default implementation demonstrates wallet authorization, EVM wallet creation through Dynamic WaaS, and TON <-> EVM asset movement. It is not a production-ready application.
 
 This repository does not implement a concrete EVM protocol integration.
 
@@ -11,7 +11,7 @@ This repository does not implement a concrete EVM protocol integration.
 Add EVM logic after the user has:
 
 - An authorized TON wallet.
-- A provisioned Dynamic EVM WaaS wallet.
+- A Dynamic EVM WaaS wallet.
 - Funds available on the target EVM network.
 
 The current EVM signing pattern is implemented in `src/hooks/use-cross-chain-swap-flow.ts`. The EVM-to-TON flow already uses the Dynamic EVM wallet account to sign typed data through `viem`.

@@ -7,7 +7,7 @@ The code is provided as an integration example. It is not a production-ready app
 The implementation has three main responsibilities:
 
 - Authenticate the user with a TON wallet.
-- Provision and use an EVM WaaS wallet for the authenticated user.
+- Create and use an EVM WaaS wallet for the authenticated user.
 - Move supported assets between TON and EVM.
 
 ## Components
@@ -26,11 +26,11 @@ Relevant files:
 
 ### Dynamic
 
-Dynamic is used as the authentication and WaaS provisioning layer.
+Dynamic is used as the authentication and EVM wallet creation layer.
 
 After the TON wallet connection is completed, the application verifies the TON wallet account through Dynamic. Once the Dynamic user session exists, the application creates or restores the linked EVM WaaS wallet.
 
-The EVM wallet is not selected by the user in a separate EVM wallet interface. It is provisioned through Dynamic and accessed by the application through Dynamic WaaS.
+The EVM wallet is not selected by the user in a separate EVM wallet interface. It is created and accessed through Dynamic WaaS.
 
 Relevant files:
 
