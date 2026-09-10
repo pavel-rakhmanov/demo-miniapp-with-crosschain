@@ -1,18 +1,87 @@
-# 1.Telegram Mini App integration
+# TON-controlled EVM Telegram Mini App with Omniston
 
-> Adjust this application to be a proper Telegram Mini App using `@tma.js` packages that suit the current codebase. Wire the app for a best-in-class Telegram Mini App experience with only the necessary Telegram functionality: SDK initialization, theme mode integration where actually needed, viewport expansion, safe-area/viewport CSS vars, back button handling integrated with the router, closing behavior, vertical swipe disabling, and Telegram chrome colors where appropriate. Do not invent custom visual styling, extra layout. Rely on Telegram-provided CSS variables and Telegram UI’s own styles, with only minimal reset styles and only the minimum shell CSS needed for correct Mini App behavior.
+This repository demonstrates how an EVM-native Telegram Mini App flow can be exposed to users through TON wallet authorization, Dynamic WaaS, and Omniston cross-chain transfers.
 
-# 2. TonConnect integration
+The code is provided as an integration example. It is not a production-ready application.
 
-> add `@tonconnect` integration to this telegram-mini app using the official starting guide https://docs.ton.org/applications/ton-connect/get-started. Add `TonConnectButton` to the app layout for wallet connect/disconnect flows but do not add create any other UI elements for wallet-related information displaying. We only need a ton-connect as authentication mechanism for now. Ask me a question about how `tonconnect-manifest.json` file required for Ton connect initialization will be provided to the app if it is not directly clear from current application structure. Before asking a question about `tonconnect-manifest.json` file coincide all requirements for this file content/location to be a valid manifest file for Ton connect. This information explained in the official doc https://docs.ton.org/applications/ton-connect/get-started#1-prepare-the-manifest
+The example combines:
 
-# 3. Dynamic integration for TON auth -> EVM WaaS
+- TON wallet connection through TonConnect.
+- EVM wallet creation with Dynamic WaaS (Wallet-as-a-Service).
+- Cross-chain liquidity movement between TON and EVM through Omniston.
 
-> add Dynamic as the underlying auth and wallet provisioning layer, but keep the user experience fully in the native TonConnect UI. Follow the official React quickstart wording and provider setup from https://www.dynamic.xyz/docs/javascript/reference/react-quickstart.
->
-> Required extra setup:
->
-> - global `Buffer` polyfill, because Dynamic use Buffer calls;
-> - TanStack Query context, because Dynamic React hooks require the Query client context.
+Omniston is the cross-chain layer used under the hood for quotes, order construction, and settlement tracking.
 
-Dynamic supports a simpler integration with its pre-defined TON plugin, where Dynamic owns the wallet selection flow and works with a single TON wallet path. This demo shows a more complex but optional approach: when the native TonConnect UI is used for the user-facing auth flow, then use Dynamic underneath to verify the TON session and provision the linked EVM WaaS wallet.
+The user-facing wallet is a TON wallet. The EVM wallet is created and accessed through Dynamic WaaS for EVM operations.
+
+## Flow
+
+```txt
+TON wallet
+  -> TonConnect initialization
+  -> Dynamic initialization
+  -> TON wallet connect with Dynamic nonce
+  -> EVM wallet creation with Dynamic WaaS
+  -> Omniston TON <-> EVM transfers
+  -> optional EVM application logic
+```
+
+The current demo uses TON USD₮ and Arbitrum USD₮0 to show both directions of the cross-chain flow:
+
+- `Bridge to EVM`: move liquidity from the connected TON wallet to the Dynamic EVM WaaS wallet.
+- `Return to TON`: move liquidity from the Dynamic EVM WaaS wallet back to the connected TON wallet.
+
+## Documentation
+
+- [Architecture](./docs/architecture.md) explains the role of TonConnect, Dynamic, and Omniston in this repository.
+- [Extending the Example](./docs/extending.md) describes the code areas to inspect when adapting the example for another EVM use case.
+
+## Requirements
+
+- Node.js `>=24 <25`
+- pnpm `11.9.0`
+- A [Dynamic environment](https://app.dynamic.xyz/dashboard/developer/api) configured with TON authentication and EVM WaaS support.
+- Arbitrum enabled in the Dynamic environment for the default EVM asset.
+
+## Configuration
+
+Copy `.env.example` to `.env` and set the required value:
+
+```sh
+cp .env.example .env
+```
+
+```env
+VITE_DYNAMIC_ENVIRONMENT_ID=
+```
+
+Optional values:
+
+```env
+VITE_OMNISTON_INTEGRATOR_ADDRESS_ON_TON=
+VITE_OMNISTON_INTEGRATOR_ADDRESS_ON_EVM=
+VITE_STON_API_BASE_URL=
+VITE_TONCONNECT_MANIFEST_URL=
+```
+
+If `VITE_TONCONNECT_MANIFEST_URL` is not provided, the app serves a manifest from `/tonconnect-manifest.json`.
+
+## Development
+
+Install dependencies:
+
+```sh
+pnpm install
+```
+
+Start the development server:
+
+```sh
+pnpm dev
+```
+
+Build and type-check:
+
+```sh
+pnpm build
+```
