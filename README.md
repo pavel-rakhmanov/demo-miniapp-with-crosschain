@@ -45,26 +45,30 @@ The current demo uses TON USD₮ and Arbitrum USD₮0 to show both directions of
 
 ## Configuration
 
-Copy `.env.example` to `.env` and set the required value:
+Copy `.env.example` to `.env`:
 
 ```sh
 cp .env.example .env
 ```
 
+Set the required Dynamic environment ID. You can find it in the [Dynamic dashboard](https://app.dynamic.xyz/dashboard/developer/api):
+
 ```env
 VITE_DYNAMIC_ENVIRONMENT_ID=
 ```
 
-Optional values:
+Configure the optional values as needed:
 
 ```env
-VITE_OMNISTON_INTEGRATOR_ADDRESS_ON_TON=
-VITE_OMNISTON_INTEGRATOR_ADDRESS_ON_EVM=
-VITE_STON_API_BASE_URL=
-VITE_TONCONNECT_MANIFEST_URL=
+# Wallet addresses for receiving Omniston integrator fees
+VITE_OMNISTON_INTEGRATOR_ADDRESS_ON_TON= # UQ...
+VITE_OMNISTON_INTEGRATOR_ADDRESS_ON_EVM= # 0x...
+
+# Uncomment and set a URL to use an externally hosted TonConnect manifest
+# VITE_TONCONNECT_MANIFEST_URL=https://your-domain.com/tonconnect-manifest.json
 ```
 
-If `VITE_TONCONNECT_MANIFEST_URL` is not provided, the app serves a manifest from `/tonconnect-manifest.json`.
+Leave `VITE_TONCONNECT_MANIFEST_URL` unset to use the manifest served by this app.
 
 ## Development
 
