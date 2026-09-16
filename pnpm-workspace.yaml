@@ -4,3 +4,6 @@ saveExact: true
 engineStrict: true
 
 minimumReleaseAge: 2880
+
+allowBuilds:
+  protobufjs: set this to true or false

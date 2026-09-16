@@ -9,25 +9,10 @@ import {
   viewport,
   useSignal,
 } from "@tma.js/sdk-react";
-import { useCanGoBack } from "@tanstack/react-router";
 import * as React from "react";
 
 function TelegramChrome() {
   const isDarkMode = useSignal(miniApp.isDark);
-
-  const canGoBack = useCanGoBack();
-
-  React.useEffect(() => {
-    const backButtonClickResult = backButton.onClick.ifAvailable(() => {
-      window.history.back();
-    });
-
-    return () => {
-      if (backButtonClickResult.ok) {
-        backButtonClickResult.data();
-      }
-    };
-  }, []);
 
   React.useEffect(() => {
     if (isDarkMode) {
@@ -39,13 +24,8 @@ function TelegramChrome() {
   }, [isDarkMode]);
 
   React.useEffect(() => {
-    if (canGoBack) {
-      backButton.show.ifAvailable();
-      return;
-    }
-
     backButton.hide.ifAvailable();
-  }, [canGoBack]);
+  }, []);
 
   return null;
 }

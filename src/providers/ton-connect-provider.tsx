@@ -9,7 +9,7 @@ export function TonConnectProvider({ children }: { children: React.ReactNode }) 
     <TonConnectUIProvider
       manifestUrl={
         import.meta.env.VITE_TONCONNECT_MANIFEST_URL ??
-        `${window.location.origin}/tonconnect-manifest.json`
+        new URL(`${import.meta.env.BASE_URL}tonconnect-manifest.json`, window.location.origin).href
       }
       uiPreferences={{
         theme: isDarkMode ? THEME.DARK : THEME.LIGHT,

@@ -13,7 +13,7 @@ export function DynamicSdkProvider({ children }: { children: React.ReactNode }) 
       environmentId: import.meta.env.VITE_DYNAMIC_ENVIRONMENT_ID,
       metadata: {
         name: "STON.fi Demo MiniApp",
-        universalLink: window.location.origin,
+        universalLink: new URL(import.meta.env.BASE_URL, window.location.origin).href,
       },
     });
 

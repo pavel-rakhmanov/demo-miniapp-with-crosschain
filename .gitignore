@@ -8,9 +8,8 @@ pnpm-debug.log*
 
 # Runtime data
 node_modules
+dist
 coverage
-.output
-.tanstack
 *.local
 
 # Editor directories and files
@@ -23,5 +22,4 @@ coverage
 *.sln
 *.sw?
 
-.gitlab-ci.yml
 .vercel

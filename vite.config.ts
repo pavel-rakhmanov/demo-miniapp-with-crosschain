@@ -1,10 +1,9 @@
-import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import { defineConfig } from "vite";
 import viteReact from "@vitejs/plugin-react";
-import { nitro } from "nitro/vite";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
+  base: "/demo-miniapp-with-crosschain/",
   server: {
     port: 3000,
   },
@@ -14,12 +13,5 @@ export default defineConfig({
     },
     tsconfigPaths: true,
   },
-  plugins: [
-    tanstackStart({
-      srcDirectory: "src",
-    }),
-    tailwindcss(),
-    viteReact(),
-    nitro(),
-  ],
+  plugins: [tailwindcss(), viteReact()],
 });
